@@ -1,16 +1,16 @@
 package com.example.photoviewer.presenter
 
 import android.content.Context
-import com.example.photoviewer.CallbackInterface
-import com.example.photoviewer.Contract
-import com.example.photoviewer.Repository
+import com.example.photoviewer.interfaces.CallbackInterface
+import com.example.photoviewer.interfaces.Contract
+import com.example.photoviewer.data.Repository
 import com.example.photoviewer.adapter.AlbumAdapter
 import com.example.photoviewer.adapter.PhotoAdapter
-import com.example.photoviewer.data.Album
-import com.example.photoviewer.data.Photo
+import com.example.photoviewer.data.model.Album
+import com.example.photoviewer.data.model.Photo
 
 class Presenter(): Contract.Presenter,
-    AlbumAdapter.AlbumClickListener, CallbackInterface.AlbumCallback {
+    AlbumAdapter.AlbumClickListener, CallbackInterface.AlbumCallback, PhotoAdapter.PhotoClickListener {
 
     constructor(view: Contract.AlbumView) : this() {
         albumView = view
@@ -53,5 +53,9 @@ class Presenter(): Contract.Presenter,
 
     override fun finishSetPhotoAdapter(photoAdapter: PhotoAdapter) {
         photoView?.initPhotoRV(photoAdapter)
+    }
+
+    override fun photoClicked(url: String?, title: String?) {
+        photoView?.onPhotoClicked(url, title)
     }
 }

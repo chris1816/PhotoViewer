@@ -1,7 +1,7 @@
 package com.example.photoviewer.network
 
-import com.example.photoviewer.data.Album
-import com.example.photoviewer.data.Photo
+import com.example.photoviewer.data.model.Album
+import com.example.photoviewer.data.model.Photo
 import retrofit2.Call
 import retrofit2.http.GET
 

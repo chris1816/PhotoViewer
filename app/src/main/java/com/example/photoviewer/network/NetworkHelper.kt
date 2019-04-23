@@ -1,9 +1,9 @@
 package com.example.photoviewer.network
 
 import android.util.Log
-import com.example.photoviewer.CallbackInterface
-import com.example.photoviewer.data.Album
-import com.example.photoviewer.data.Photo
+import com.example.photoviewer.interfaces.CallbackInterface
+import com.example.photoviewer.data.model.Album
+import com.example.photoviewer.data.model.Photo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

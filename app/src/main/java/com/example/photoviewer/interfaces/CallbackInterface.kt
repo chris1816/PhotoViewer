@@ -1,9 +1,9 @@
-package com.example.photoviewer
+package com.example.photoviewer.interfaces
 
 import com.example.photoviewer.adapter.AlbumAdapter
 import com.example.photoviewer.adapter.PhotoAdapter
-import com.example.photoviewer.data.Album
-import com.example.photoviewer.data.Photo
+import com.example.photoviewer.data.model.Album
+import com.example.photoviewer.data.model.Photo
 
 interface CallbackInterface {
 
@@ -14,8 +14,12 @@ interface CallbackInterface {
         fun finishSetPhotoAdapter(photoAdapter: PhotoAdapter)
     }
 
-    interface AlbumClickCallback{
+    interface AlbumClickCallback {
         fun onAlbumClicked(id: String?)
+        fun onPhotoClicked(url: String?, title: String?)
+    }
+
+    interface PhotoClickCallback {
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.photoviewer.ui.fragment
+package com.example.photoviewer.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.photoviewer.CallbackInterface
-import com.example.photoviewer.Contract
+import androidx.recyclerview.widget.RecyclerView
+import com.example.photoviewer.interfaces.CallbackInterface
+import com.example.photoviewer.interfaces.Contract
 import com.example.photoviewer.presenter.Presenter
 import com.example.photoviewer.R
 import com.example.photoviewer.adapter.AlbumAdapter
@@ -44,7 +45,7 @@ class FragmentAlbum: Fragment(), Contract.AlbumView {
     override fun initAlbumRV(mAdapter: AlbumAdapter) {
 
         val layoutManager = LinearLayoutManager(context)
-        rv_fragment_album.layoutManager = layoutManager
+        rv_fragment_album.layoutManager = layoutManager as RecyclerView.LayoutManager?
         rv_fragment_album.adapter = mAdapter
     }
 

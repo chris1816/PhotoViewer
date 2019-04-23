@@ -1,4 +1,4 @@
-package com.example.photoviewer.ui
+package com.example.photoviewer.ui.activities
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="margin_cardview">2dp</dimen>
+    <dimen name="padding_single_photo">10dp</dimen>
+
+</resources>

@@ -1,4 +1,4 @@
-package com.example.photoviewer.data
+package com.example.photoviewer.data.model
 
 import com.google.gson.annotations.SerializedName
 

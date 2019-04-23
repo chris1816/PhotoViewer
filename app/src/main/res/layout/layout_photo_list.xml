@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<LinearLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
 
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/cardViewBackGround"
+            android:layout_margin="@dimen/margin_cardview"
             app:cardCornerRadius="5dp"
             android:elevation="5dp">
 
@@ -20,15 +23,18 @@
             <TextView
                 android:id="@+id/tv_photo_title"
                 android:text="@string/testText"
+                android:layout_gravity="center"
                 android:padding="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <ImageView
                 android:padding="5dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
                 android:id="@+id/tv_album_thumbnail"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="0dp"/>
 
         </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.example.photoviewer
+package com.example.photoviewer.interfaces
 
 import android.content.Context
 import com.example.photoviewer.adapter.AlbumAdapter
@@ -22,6 +22,7 @@ interface Contract {
 
     interface PhotoView {
         fun initPhotoRV(photoAdapter: PhotoAdapter)
+        fun onPhotoClicked(url: String?, title: String?)
 
     }
 

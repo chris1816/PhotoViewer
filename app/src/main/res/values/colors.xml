@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="GreyDivider">#D7D7D7</color>
-
+    <color name="greyDivider">#D7D7D7</color>
+    <color name="cardViewBackGround">#e8e7e7</color>
 </resources>

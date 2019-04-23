@@ -1,11 +1,12 @@
-package com.example.photoviewer
+package com.example.photoviewer.data
 
 import android.content.Context
 import com.example.photoviewer.network.NetworkHelper
 import com.example.photoviewer.adapter.AlbumAdapter
 import com.example.photoviewer.adapter.PhotoAdapter
-import com.example.photoviewer.data.Album
-import com.example.photoviewer.data.Photo
+import com.example.photoviewer.data.model.Album
+import com.example.photoviewer.data.model.Photo
+import com.example.photoviewer.interfaces.CallbackInterface
 
 class Repository {
 
@@ -56,6 +57,7 @@ class Repository {
             photoAdapter = PhotoAdapter(context, photosWithIdList)
         }
 
+        photoAdapter.setListener(albumCallback as PhotoAdapter.PhotoClickListener)
         albumCallback.finishSetPhotoAdapter(photoAdapter)
     }
 

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.photoviewer.data.Album
+import com.example.photoviewer.data.model.Album
 import com.example.photoviewer.R
 import kotlinx.android.synthetic.main.layout_album_list.view.*
 
