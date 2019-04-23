@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PhotoViewer</string>
+    <string name="testText">testmustbelonglonglong</string>
 </resources>
