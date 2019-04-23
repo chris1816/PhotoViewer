@@ -1,13 +1,18 @@
 package com.example.photoviewer
 
+import android.content.Context
 import com.example.photoviewer.network.NetworkHelper
 import com.example.photoviewer.adapter.AlbumAdapter
+import com.example.photoviewer.adapter.PhotoAdapter
 import com.example.photoviewer.data.Album
+import com.example.photoviewer.data.Photo
 
 class Repository {
 
     val networkHelper = NetworkHelper()
-    private lateinit var mAdapter: AlbumAdapter
+    private lateinit var albumAdapter: AlbumAdapter
+    private lateinit var photoAdapter: PhotoAdapter
+    private var context: Context? = null
 
 
     fun onAlbumListInit(albumCallback: CallbackInterface.AlbumCallback) {
@@ -15,13 +20,43 @@ class Repository {
     }
 
     fun initAlbum(albums: List<Album>, albumCallback: CallbackInterface.AlbumCallback) {
-        if (!::mAdapter.isInitialized) {
-            mAdapter = AlbumAdapter()
+        if (!::albumAdapter.isInitialized) {
+            albumAdapter = AlbumAdapter()
         }
 
-        mAdapter.albumList = albums
-        mAdapter.setListener(albumCallback as AlbumAdapter.AlbumClickListener)
-        albumCallback.finishSetAdapter(mAdapter)
+        albumAdapter.albumList = albums
+        albumAdapter.setListener(albumCallback as AlbumAdapter.AlbumClickListener)
+        albumCallback.finishSetAlbumAdapter(albumAdapter)
+    }
+
+    fun onPhotoListInit(
+        albumCallback: CallbackInterface.AlbumCallback,
+        context: Context?
+    ) {
+        this.context = context
+        networkHelper.onPhotoListInit(albumCallback)
+    }
+
+    fun initPhotos(
+        photos: List<Photo>,
+        albumCallback: CallbackInterface.AlbumCallback,
+        albumId: String?
+    ) {
+
+        val photosWithIdList = mutableListOf<Photo>()
+
+        for (photo in photos) {
+            if (photo.albumId.equals(albumId)) {
+                photosWithIdList.add(photo)
+            }
+        }
+
+//        photoAdapter.photoList = photosWithId
+        if (!::photoAdapter.isInitialized) {
+            photoAdapter = PhotoAdapter(context, photosWithIdList)
+        }
+
+        albumCallback.finishSetPhotoAdapter(photoAdapter)
     }
 
 }

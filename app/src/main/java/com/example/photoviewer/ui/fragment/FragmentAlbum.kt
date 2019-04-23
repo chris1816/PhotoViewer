@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.photoviewer.CallbackInterface
 import com.example.photoviewer.Contract
 import com.example.photoviewer.presenter.Presenter
@@ -15,7 +14,7 @@ import com.example.photoviewer.R
 import com.example.photoviewer.adapter.AlbumAdapter
 import kotlinx.android.synthetic.main.layout_fragment_album.*
 
-class FragmentAlbum: Fragment(), Contract.FragmentView {
+class FragmentAlbum: Fragment(), Contract.AlbumView {
 
     private var presenter: Presenter? = null
     private var albumClickCallback: CallbackInterface.AlbumClickCallback? = null

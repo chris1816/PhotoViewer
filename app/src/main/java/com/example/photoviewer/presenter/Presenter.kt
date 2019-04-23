@@ -1,14 +1,33 @@
 package com.example.photoviewer.presenter
 
-import android.util.Log
+import android.content.Context
 import com.example.photoviewer.CallbackInterface
 import com.example.photoviewer.Contract
 import com.example.photoviewer.Repository
 import com.example.photoviewer.adapter.AlbumAdapter
+import com.example.photoviewer.adapter.PhotoAdapter
 import com.example.photoviewer.data.Album
+import com.example.photoviewer.data.Photo
 
-class Presenter(val view: Contract.FragmentView): Contract.Presenter,
+class Presenter(): Contract.Presenter,
     AlbumAdapter.AlbumClickListener, CallbackInterface.AlbumCallback {
+
+    constructor(view: Contract.AlbumView) : this() {
+        albumView = view
+    }
+
+    constructor(view: Contract.PhotoView) : this() {
+        photoView = view
+    }
+
+    var albumView: Contract.AlbumView? = null
+    var photoView: Contract.PhotoView? = null
+    var albumId: String? = null
+
+    override fun initPhotos(albumId: String, context: Context?) {
+        this.albumId = albumId
+        repository.onPhotoListInit(this, context)
+    }
 
     val repository: Repository = Repository()
 
@@ -20,11 +39,19 @@ class Presenter(val view: Contract.FragmentView): Contract.Presenter,
         repository.initAlbum(albums, this)
     }
 
-    override fun finishSetAdapter(mAdapter: AlbumAdapter) {
-        view.initAlbumRV(mAdapter)
+    override fun getPhotoFinished(photos: List<Photo>) {
+        repository.initPhotos(photos, this, albumId)
+    }
+
+    override fun finishSetAlbumAdapter(mAdapter: AlbumAdapter) {
+        albumView?.initAlbumRV(mAdapter)
     }
 
     override fun albumClicked(id: String?) {
-        view.onAlbumClicked(id)
+        albumView?.onAlbumClicked(id)
+    }
+
+    override fun finishSetPhotoAdapter(photoAdapter: PhotoAdapter) {
+        photoView?.initPhotoRV(photoAdapter)
     }
 }
