@@ -20,6 +20,7 @@ class Repository {
         }
 
         mAdapter.albumList = albums
+        mAdapter.setListener(albumCallback as AlbumAdapter.AlbumClickListener)
         albumCallback.finishSetAdapter(mAdapter)
     }
 

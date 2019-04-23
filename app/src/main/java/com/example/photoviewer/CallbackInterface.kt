@@ -9,4 +9,9 @@ interface CallbackInterface {
         fun getAlbumFinished(albums: List<Album>)
         fun finishSetAdapter(mAdapter: AlbumAdapter)
     }
+
+    interface AlbumClickCallback{
+        fun onAlbumClicked(id: String?)
+
+    }
 }

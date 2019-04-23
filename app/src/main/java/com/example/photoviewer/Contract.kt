@@ -15,6 +15,7 @@ interface Contract {
 
     interface FragmentView {
         fun initAlbumRV(mAdapter: AlbumAdapter)
+        fun onAlbumClicked(id: String?)
 
     }
 }

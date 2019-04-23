@@ -1,5 +1,6 @@
 package com.example.photoviewer.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.MyViewHolder>() {
 
     lateinit var albumList: List<Album>
 
+    private var clickListener: AlbumClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -31,11 +33,29 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.MyViewHolder>() {
         if (!::albumList.isInitialized) {
             return
         }
-        holder.albumTitle.text = albumList.get(position).title
+        holder.albumTitle.text = albumList[position].title
+    }
+
+    fun setListener(clickListener: AlbumClickListener?) {
+        this.clickListener = clickListener
     }
 
 
-    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener{
+
+        override fun onClick(v: View?) {
+
+            clickListener?.albumClicked(albumList[adapterPosition].id)
+        }
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
         var albumTitle = itemView.tv_album_title
+    }
+
+    interface AlbumClickListener {
+        fun albumClicked(id: String?)
     }
 }
