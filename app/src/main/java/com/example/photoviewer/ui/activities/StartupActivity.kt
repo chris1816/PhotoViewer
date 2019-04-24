@@ -26,6 +26,7 @@ class StartupActivity : AppCompatActivity() {
 
                 val intent = Intent(this@StartupActivity, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
 
         }

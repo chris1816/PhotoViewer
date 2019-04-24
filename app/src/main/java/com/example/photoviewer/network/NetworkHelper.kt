@@ -1,21 +1,31 @@
 package com.example.photoviewer.network
 
 import android.util.Log
+import com.example.photoviewer.MyApplication
 import com.example.photoviewer.interfaces.CallbackInterface
 import com.example.photoviewer.data.model.Album
 import com.example.photoviewer.data.model.Photo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import javax.inject.Inject
 
 class NetworkHelper: INetworkHelper {
 
+    @Inject
+    lateinit var retrofit: Retrofit
+
     val apiService by lazy {
-        RetrofitFactory.getRetrofitInstance().create(ApiService::class.java)
+        retrofit.create(ApiService::class.java)
     }
 
     companion object {
         const val TAG = "network"
+    }
+
+    init {
+        MyApplication.getDaggerComponent().injectRetrofitInstance(this)
     }
 
     override fun onAlbumListInit(albumCallback: CallbackInterface.AlbumCallback) {

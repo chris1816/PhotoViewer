@@ -48,8 +48,8 @@ class FragmentPhoto: Fragment(), Contract.PhotoView {
 
     override fun initPhotoRV(photoAdapter: PhotoAdapter) {
         val layoutManager = GridLayoutManager(context, 2)
-        rv_fragment_photo.layoutManager = layoutManager
-        rv_fragment_photo.adapter = photoAdapter
+        rv_fragment_photo?.layoutManager = layoutManager
+        rv_fragment_photo?.adapter = photoAdapter
     }
 
     override fun onPhotoClicked(url: String?, title: String?) {

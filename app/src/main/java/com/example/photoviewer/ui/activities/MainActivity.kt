@@ -38,4 +38,13 @@ class MainActivity : AppCompatActivity(), CallbackInterface.AlbumClickCallback {
             .replace(R.id.container, fragmentSinglePhoto, null).addToBackStack("").commit()
     }
 
+/*    companion object {
+        fun getDaggerComponent(): MyComponent {
+            return DaggerMyComponent
+                .builder()
+                .contextModule(ContextModule())
+                .build()
+        }
+    }*/
+
 }

@@ -45,8 +45,8 @@ class FragmentAlbum: Fragment(), Contract.AlbumView {
     override fun initAlbumRV(mAdapter: AlbumAdapter) {
 
         val layoutManager = LinearLayoutManager(context)
-        rv_fragment_album.layoutManager = layoutManager as RecyclerView.LayoutManager?
-        rv_fragment_album.adapter = mAdapter
+        rv_fragment_album?.layoutManager = layoutManager as RecyclerView.LayoutManager?
+        rv_fragment_album?.adapter = mAdapter
     }
 
     override fun onAlbumClicked(id: String?) {
