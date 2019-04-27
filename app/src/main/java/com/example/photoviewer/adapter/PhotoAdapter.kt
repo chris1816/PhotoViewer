@@ -10,13 +10,10 @@ import com.example.photoviewer.data.model.Photo
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_photo_list.view.*
 
-class PhotoAdapter(
-    val context: Context?,
-    val photosWithIdList: MutableList<Photo>
-) : RecyclerView.Adapter<PhotoAdapter.MyViewHolder>() {
+class PhotoAdapter(val context: Context?) : RecyclerView.Adapter<PhotoAdapter.MyViewHolder>() {
 
     private var clickListener: PhotoClickListener? = null
-
+    private var photosWithIdList: List<Photo>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_photo_list, parent, false)
@@ -24,15 +21,15 @@ class PhotoAdapter(
     }
 
     override fun getItemCount(): Int {
-        return photosWithIdList.size
+        return photosWithIdList?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.photoTitle.text = photosWithIdList[position].title
+        holder.photoTitle.text = photosWithIdList?.get(position)?.title
 
         Picasso.with(context)
-            .load(photosWithIdList[position].thumbnailUrl)
+            .load(photosWithIdList?.get(position)?.thumbnailUrl)
             .into(holder.thumbnails)
 
     }
@@ -41,10 +38,15 @@ class PhotoAdapter(
         this.clickListener = clickListener
     }
 
+    fun setPhotosWithIdList(photosWithIdList: List<Photo>) {
+        this.photosWithIdList = photosWithIdList
+        notifyDataSetChanged()
+    }
+
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         override fun onClick(v: View?) {
-            clickListener?.photoClicked(photosWithIdList[adapterPosition].url, photosWithIdList[adapterPosition].title)
+            clickListener?.photoClicked(photosWithIdList?.get(adapterPosition)?.url, photosWithIdList?.get(adapterPosition)?.title)
         }
 
         init {

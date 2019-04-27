@@ -1,26 +1,17 @@
 package com.example.photoviewer.data
 
-import android.content.Context
 import com.example.photoviewer.network.NetworkHelper
-import com.example.photoviewer.adapter.AlbumAdapter
-import com.example.photoviewer.adapter.PhotoAdapter
-import com.example.photoviewer.data.model.Album
-import com.example.photoviewer.data.model.Photo
-import com.example.photoviewer.interfaces.CallbackInterface
+import com.example.photoviewer.interfaces.NetworkCallback
 
 class Repository {
 
     val networkHelper = NetworkHelper()
-    private lateinit var albumAdapter: AlbumAdapter
-    private lateinit var photoAdapter: PhotoAdapter
-    private var context: Context? = null
 
-
-    fun onAlbumListInit(albumCallback: CallbackInterface.AlbumCallback) {
-        networkHelper.onAlbumListInit(albumCallback)
+    fun onAlbumListInit(networkCallback: NetworkCallback) {
+        networkHelper.onAlbumListInit(networkCallback)
     }
 
-    fun initAlbum(albums: List<Album>, albumCallback: CallbackInterface.AlbumCallback) {
+/*    fun initAlbum(albums: List<Album>, albumCallback: NetworkCallback.NetworkCallback) {
         if (!::albumAdapter.isInitialized) {
             albumAdapter = AlbumAdapter()
         }
@@ -28,19 +19,15 @@ class Repository {
         albumAdapter.albumList = albums
         albumAdapter.setListener(albumCallback as AlbumAdapter.AlbumClickListener)
         albumCallback.finishSetAlbumAdapter(albumAdapter)
+    }*/
+
+    fun onPhotoListInit(networkCallback: NetworkCallback) {
+        networkHelper.onPhotoListInit(networkCallback)
     }
 
-    fun onPhotoListInit(
-        albumCallback: CallbackInterface.AlbumCallback,
-        context: Context?
-    ) {
-        this.context = context
-        networkHelper.onPhotoListInit(albumCallback)
-    }
-
-    fun initPhotos(
+/*    fun initPhotos(
         photos: List<Photo>,
-        albumCallback: CallbackInterface.AlbumCallback,
+        albumCallback: NetworkCallback.NetworkCallback,
         albumId: String?
     ) {
 
@@ -54,11 +41,11 @@ class Repository {
 
 //        photoAdapter.photoList = photosWithId
         if (!::photoAdapter.isInitialized) {
-            photoAdapter = PhotoAdapter(context, photosWithIdList)
+            photoAdapter = PhotoAdapter(context)
         }
 
         photoAdapter.setListener(albumCallback as PhotoAdapter.PhotoClickListener)
         albumCallback.finishSetPhotoAdapter(photoAdapter)
-    }
+    }*/
 
 }

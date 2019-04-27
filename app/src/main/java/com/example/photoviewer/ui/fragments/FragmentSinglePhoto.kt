@@ -18,12 +18,11 @@ class FragmentSinglePhoto: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.layout_fragment_photo_single, container, false)
-        return view
+        return inflater.inflate(R.layout.layout_fragment_photo_single, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             val url = it.getString("url")
             val title = it.getString("title")

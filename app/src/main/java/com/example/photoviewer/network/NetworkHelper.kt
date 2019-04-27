@@ -2,7 +2,7 @@ package com.example.photoviewer.network
 
 import android.util.Log
 import com.example.photoviewer.MyApplication
-import com.example.photoviewer.interfaces.CallbackInterface
+import com.example.photoviewer.interfaces.NetworkCallback
 import com.example.photoviewer.data.model.Album
 import com.example.photoviewer.data.model.Photo
 import retrofit2.Call
@@ -16,19 +16,17 @@ class NetworkHelper: INetworkHelper {
     @Inject
     lateinit var retrofit: Retrofit
 
-    val apiService by lazy {
+    private val apiService by lazy {
         retrofit.create(ApiService::class.java)
     }
 
-    companion object {
-        const val TAG = "network"
-    }
+    private val TAG = "network"
 
     init {
         MyApplication.getDaggerComponent().injectRetrofitInstance(this)
     }
 
-    override fun onAlbumListInit(albumCallback: CallbackInterface.AlbumCallback) {
+    override fun onAlbumListInit(networkCallback: NetworkCallback) {
 
         val call = apiService.getAlbumList()
 
@@ -41,14 +39,14 @@ class NetworkHelper: INetworkHelper {
             override fun onResponse(call: Call<List<Album>>, response: Response<List<Album>>) {
                 val albums = response.body()
                 albums?.let {
-                    albumCallback.getAlbumFinished(it)
+                    networkCallback.getAlbumFinished(it)
                 }
             }
 
         })
     }
 
-    override fun onPhotoListInit(albumCallback: CallbackInterface.AlbumCallback) {
+    override fun onPhotoListInit(networkCallback: NetworkCallback) {
 
         val call = apiService.getPhotoList()
 
@@ -60,7 +58,7 @@ class NetworkHelper: INetworkHelper {
             override fun onResponse(call: Call<List<Photo>>, response: Response<List<Photo>>) {
                 val photos = response.body()
                 photos?.let {
-                    albumCallback.getPhotoFinished(it)
+                    networkCallback.getPhotoFinished(it)
                 }
             }
 

@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.layout_album_list.view.*
 
 class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.MyViewHolder>() {
 
-    lateinit var albumList: List<Album>
+    private lateinit var albumList: List<Album>
 
     private var clickListener: AlbumClickListener? = null
 
@@ -19,6 +19,11 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.MyViewHolder>() {
             .inflate(R.layout.layout_album_list, parent, false)
 
         return MyViewHolder(view)
+    }
+
+    fun setAlbumList(albumList: List<Album>) {
+        this.albumList = albumList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
