@@ -7,7 +7,7 @@ import com.example.photoviewer.data.model.Album
 import com.example.photoviewer.data.model.Photo
 import com.example.photoviewer.interfaces.NetworkCallback
 
-class MyViewModel() : ViewModel(), NetworkCallback {
+class MyViewModel(): ViewModel(), NetworkCallback {
 
     private var albumId: String? = ""
 
@@ -22,6 +22,8 @@ class MyViewModel() : ViewModel(), NetworkCallback {
         get() = _validPhotos
 
     private val repository = Repository()
+
+    private var INITPHOTOTAG = true
 
     init {
 //        initAlbums()
@@ -41,11 +43,14 @@ class MyViewModel() : ViewModel(), NetworkCallback {
     }
 
     fun initAlbums() {
-        repository.onAlbumListInit(this)
+        if (INITPHOTOTAG) {
+            repository.onAlbumListInit(this)
+        }
     }
 
     override fun getAlbumFinished(albums: List<Album>) {
         _albums.value = albums
+        INITPHOTOTAG = false
     }
 
     override fun getPhotoFinished(photos: List<Photo>) {
