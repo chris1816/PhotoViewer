@@ -1,8 +1,8 @@
 package com.example.photoviewer.network
 
-import com.example.photoviewer.interfaces.CallbackInterface
+import com.example.photoviewer.interfaces.NetworkCallback
 
 interface INetworkHelper {
-    fun onAlbumListInit(albumCallback: CallbackInterface.AlbumCallback)
-    fun onPhotoListInit(albumCallback: CallbackInterface.AlbumCallback)
+    fun onAlbumListInit(networkCallback: NetworkCallback)
+    fun onPhotoListInit(networkCallback: NetworkCallback)
 }
